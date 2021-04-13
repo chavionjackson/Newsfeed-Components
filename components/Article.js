@@ -114,3 +114,50 @@ const data = [
   Step 5: Try adding new article object to the data array. Make sure it is in the same format as the others.
   Refresh the page to see the new article.
 */
+
+//Created function and elements
+const articleMaker = (article) => {
+  const div = document.createElement('div');
+  const h2 = document.createElement('h2');
+  const firstP = document.createElement('p');
+  const secondP = document.createElement('p');
+  const thirdP = document.createElement('p');
+  const span = document.createElement('span');
+
+  //Added classes to elements
+  div.classList.add('article');
+  firstP.classList.add('date');
+  secondP.classList.add('date');
+  thirdP.classList.add('date');
+  span.classList.add('expandButton');
+
+  //Added text to elements with content
+  h2.textContent = article.title;
+  firstP.textContent = article.firstParagraph;
+  secondP.textContent = article.secondParagraph;
+  thirdP.textContent = article.thirdParagraph;
+  span.textContent = '+';
+
+  //Added event click to display article when clicked
+  span.addEventListener('click', () => {
+    div.classList.toggle('article-open');
+  });
+
+  //Attached elements to the parent
+  div.appendChild(h2);
+  div.appendChild(firstP);
+  div.appendChild(secondP);
+  div.appendChild(thirdP);
+  div.appendChild(span);
+
+  //Return the sections
+  return div;
+}
+
+//Grabbed the articles class
+const parent = document.querySelector('.articles');
+
+//Looped through the data to log the article maker
+data.forEach(item => {
+   parent.appendChild(articleMaker(item));
+});
