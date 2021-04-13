@@ -31,31 +31,34 @@ let menuItems = [
 
   Step 6: Use 'menuMaker' to create a menu using the 'menuItems' array, and append the returned menu to the header.
 */
-
-//Function to create elements and add menu
+//Created function and elements
 const menuMaker = (arr) => {
-  const section = document.createElement('div');
-  const list = document.createElement('ul');
-  section.classList.add('menu');
-
-  //Loop through data
+  const div = document.createElement('div');
+  const ul = document.createElement('ul');
+  //Added class to element div
+  div.classList.add('menu');
+  //Lopped through array and created element li
   arr.forEach(item => {
-    const listWithin = document.createElement('li');
-    listWithin.textContent = item;
-    list.appendChild(listWithin);
+    const li = document.createElement('li');
+    //Added items from array to list
+    li.textContent = item;
+    //Attached list items to unordered list.
+    ul.appendChild(li);
   })
 
-  //Selected image
-  const image = document.querySelector('img');
-  image.addEventListener('click', () => {
-    section.classList.toggle('menu--open')
+  //Grabbed element img
+  const element = document.querySelector('img');
+  //Added click event to element with 'menu--open' class
+  element.addEventListener('click', () => {
+    div.classList.toggle('menu--open');
   })
 
-  //Attached list to DOM
-  section.appendChild(list);
-  return section;
+  //Attached element ul to the div
+  div.appendChild(ul);
+  return div;
 }
 
-//Selected element then attacted
+//Grabbed element with class .header
 const parent = document.querySelector('.header');
+//Attached menuMaker with the menu items to the parent element. 
 parent.appendChild(menuMaker(menuItems));

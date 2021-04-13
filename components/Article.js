@@ -115,50 +115,49 @@ const data = [
   Refresh the page to see the new article.
 */
 
-//Selected articles
-const whole = document.querySelector('.articles')
-
-//Created elements and function
+//Created function and elements
 const articleMaker = (article) => {
-  const section = document.createElement('div');
-  const secHeader = document.createElement('h2');
-  const firstPara = document.createElement('p');
-  const secPara = document.createElement('p');
-  const thirdPara = document.createElement('p');
-  const expand = document.createElement('span');
+  const div = document.createElement('div');
+  const h2 = document.createElement('h2');
+  const firstP = document.createElement('p');
+  const secondP = document.createElement('p');
+  const thirdP = document.createElement('p');
+  const span = document.createElement('span');
 
-  //Added classes
-  section.classList.add('article');
-  firstPara.classList.add('date');
-  secPara.classList.add('date');
-  thirdPara.classList.add('date');
-  expand.classList.add('expandButton');
+  //Added classes to elements
+  div.classList.add('article');
+  firstP.classList.add('date');
+  secondP.classList.add('date');
+  thirdP.classList.add('date');
+  span.classList.add('expandButton');
 
-  //Added text content
-  secHeader.textContent = article.title;
-  firstPara.textContent = article.firstParagraph;
-  secPara.textContent = article.secondParagraph;
-  thirdPara.textContent = article.thirdParagraph;
-  expand.textContent = '+';
-  
-  //Listening event for toggle upon click
-  expand.addEventListener('click', () => {
-    section.classList.toggle('article-open');
+  //Added text to elements with content
+  h2.textContent = article.title;
+  firstP.textContent = article.firstParagraph;
+  secondP.textContent = article.secondParagraph;
+  thirdP.textContent = article.thirdParagraph;
+  span.textContent = '+';
+
+  //Added event click to display article when clicked
+  span.addEventListener('click', () => {
+    div.classList.toggle('article-open');
   });
 
-  //Added elements in certain order
-  section.appendChild(secHeader);
-  section.appendChild(firstPara);
-  section.appendChild(secPara);
-  section.appendChild(thirdPara);
-  section.appendChild(expand);
+  //Attached elements to the parent
+  div.appendChild(h2);
+  div.appendChild(firstP);
+  div.appendChild(secondP);
+  div.appendChild(thirdP);
+  div.appendChild(span);
 
-  console.log(section);
-  return section;
-
+  //Return the sections
+  return div;
 }
 
-//looped over data
-data.forEach(content => {
-  whole.appendChild(articleMaker(content));
+//Grabbed the articles class
+const parent = document.querySelector('.articles');
+
+//Looped through the data to log the article maker
+data.forEach(item => {
+   parent.appendChild(articleMaker(item));
 });
