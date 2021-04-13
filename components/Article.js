@@ -115,6 +115,10 @@ const data = [
   Refresh the page to see the new article.
 */
 
+//Selected articles
+const whole = document.querySelector('.articles')
+
+//Created elements and function
 const articleMaker = (article) => {
   const section = document.createElement('div');
   const secHeader = document.createElement('h2');
@@ -123,23 +127,26 @@ const articleMaker = (article) => {
   const thirdPara = document.createElement('p');
   const expand = document.createElement('span');
 
+  //Added classes
   section.classList.add('article');
   firstPara.classList.add('date');
   secPara.classList.add('date');
   thirdPara.classList.add('date');
   expand.classList.add('expandButton');
 
+  //Added text content
   secHeader.textContent = article.title;
   firstPara.textContent = article.firstParagraph;
   secPara.textContent = article.secondParagraph;
   thirdPara.textContent = article.thirdParagraph;
   expand.textContent = '+';
   
-  
+  //Listening event for toggle upon click
   expand.addEventListener('click', () => {
     section.classList.toggle('article-open');
   });
 
+  //Added elements in certain order
   section.appendChild(secHeader);
   section.appendChild(firstPara);
   section.appendChild(secPara);
@@ -151,8 +158,7 @@ const articleMaker = (article) => {
 
 }
 
-const whole = document.querySelector('.articles')
-
+//looped over data
 data.forEach(content => {
   whole.appendChild(articleMaker(content));
 });
